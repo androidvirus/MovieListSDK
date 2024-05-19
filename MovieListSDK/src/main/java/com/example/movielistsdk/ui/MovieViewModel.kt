@@ -3,6 +3,7 @@ package com.example.movielistsdk.ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movielistsdk.data.TmdbMovieDetail
 import com.example.movielistsdk.data.TmdbMovieResponse
 import com.example.movielistsdk.data.remote.NetWorkResult
 import com.example.movielistsdk.data.repository.MovieRepository
@@ -26,6 +27,11 @@ class MovieViewModel(private val movieRepository: MovieRepository, application: 
     )
     val upcomingMovieState: StateFlow<NetWorkResult<TmdbMovieResponse>> = _upcomingMovieState
 
+    private val _movieDetails: MutableStateFlow<NetWorkResult<TmdbMovieDetail>> = MutableStateFlow(
+        NetWorkResult.Loading(true)
+    )
+    val movieDetails: StateFlow<NetWorkResult<TmdbMovieDetail>> = _movieDetails
+
     fun getPopularMovieList() {
         viewModelScope.launch {
             movieRepository.getPopularMovieList(context).collect {
@@ -38,6 +44,14 @@ class MovieViewModel(private val movieRepository: MovieRepository, application: 
         viewModelScope.launch {
             movieRepository.getUpComingMovieList(context).collect {
                 _upcomingMovieState.value = it
+            }
+        }
+    }
+
+    fun getMovieDetails(movieId: String) {
+        viewModelScope.launch {
+            movieRepository.getMovieDetails(context, movieId).collect {
+                _movieDetails.value = it
             }
         }
     }

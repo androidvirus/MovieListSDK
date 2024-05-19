@@ -1,6 +1,7 @@
 package com.example.movielistsdk.data.repository
 
 import android.content.Context
+import com.example.movielistsdk.data.TmdbMovieDetail
 import com.example.movielistsdk.data.TmdbMovieResponse
 import com.example.movielistsdk.data.remote.toMovieResultFlow
 import com.example.movielistsdk.data.remote.NetWorkResult
@@ -17,6 +18,12 @@ class MovieRepository(private val movieRepositoryData: MovieRepositoryData) {
     suspend fun getUpComingMovieList(context: Context): Flow<NetWorkResult<TmdbMovieResponse>> {
         return toMovieResultFlow(context) {
             movieRepositoryData.getUpComingMovie()
+        }
+    }
+
+    suspend fun getMovieDetails(context: Context, movieId: String): Flow<NetWorkResult<TmdbMovieDetail>> {
+        return toMovieResultFlow(context) {
+            movieRepositoryData.getMovieDetails(movieId)
         }
     }
 }
