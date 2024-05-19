@@ -1,5 +1,7 @@
 package com.example.movielistsdk.data
 
+import java.io.Serializable
+
 data class TmdbMovie(
     val id: Int,
     val vote_average: Double,
@@ -38,34 +40,34 @@ data class TmdbMovieDetail(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Long
-)
+) : Serializable
 
 data class BelongToCollection (
     val id: Int,
     val name: String,
     val poster_path: String,
     val backdrop_path: String
-)
+) : Serializable
 
 data class Genres (
     val id: Int,
     val name: String
-)
+) : Serializable
 
 data class ProductionCompanies (
     val id: Int,
     val logo_path: String,
     val name: String,
     val origin_country: String
-)
+) : Serializable
 
 data class ProductionCountries (
     val iso_3166_1: String,
     val name: String
-)
+) : Serializable
 
 data class SpokenLanguages (
     val english_name: String,
     val iso_639_1: String,
     val name: String
-)
+) : Serializable
