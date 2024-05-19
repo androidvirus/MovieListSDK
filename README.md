@@ -1,4 +1,4 @@
-# (TMDB Network SDK) MovieListSDK with Retrofit, Koin and Kotlin
+# (TMDB Network Library) MovieListSDK with Retrofit, Koin and Kotlin
 -------------------------------------------------------------------------
 ### This is the TMDB Network Library, which contains Popular, Upcoming, and MovieDetails.
 
