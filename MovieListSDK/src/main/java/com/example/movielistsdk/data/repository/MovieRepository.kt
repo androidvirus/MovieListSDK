@@ -13,4 +13,10 @@ class MovieRepository(private val movieRepositoryData: MovieRepositoryData) {
             movieRepositoryData.getPopularMovie()
         }
     }
+
+    suspend fun getUpComingMovieList(context: Context): Flow<NetWorkResult<TmdbMovieResponse>> {
+        return toMovieResultFlow(context) {
+            movieRepositoryData.getUpComingMovie()
+        }
+    }
 }

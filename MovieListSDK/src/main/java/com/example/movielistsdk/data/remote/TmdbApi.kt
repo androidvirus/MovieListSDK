@@ -8,4 +8,7 @@ interface TmdbApi{
 
     @GET("popular")
     suspend fun getPopularMovie(): Response<TmdbMovieResponse>
+
+    @GET("upcoming")
+    suspend fun getUpComingMovie(): Response<TmdbMovieResponse>
 }

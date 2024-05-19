@@ -6,7 +6,7 @@ import android.net.NetworkCapabilities
 
 object AppConstants {
     const val TMDB_BASE_URL = "https://api.themoviedb.org/3/movie/"
-    const val TMDB_PHOTO_URL = " http://image.tmdb.org/t/p/w185"
+    const val TMDB_PHOTO_URL = "https://image.tmdb.org/t/p/w500"
     var Tmdb_Api_Key = "909594533c98883408adef5d56143539"
 
     const val API_INTERNET_MESSAGE = "No Internet Connection"

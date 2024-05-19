@@ -16,15 +16,28 @@ class MovieViewModel(private val movieRepository: MovieRepository, application: 
     private val context
         get() = getApplication<Application>()
 
-    private val _uiState: MutableStateFlow<NetWorkResult<TmdbMovieResponse>> = MutableStateFlow(
+    private val _popularMovieState: MutableStateFlow<NetWorkResult<TmdbMovieResponse>> = MutableStateFlow(
         NetWorkResult.Loading(true)
     )
-    val uiState: StateFlow<NetWorkResult<TmdbMovieResponse>> = _uiState
+    val popularMovieState: StateFlow<NetWorkResult<TmdbMovieResponse>> = _popularMovieState
 
-    fun getMovieList() {
+    private val _upcomingMovieState: MutableStateFlow<NetWorkResult<TmdbMovieResponse>> = MutableStateFlow(
+        NetWorkResult.Loading(true)
+    )
+    val upcomingMovieState: StateFlow<NetWorkResult<TmdbMovieResponse>> = _upcomingMovieState
+
+    fun getPopularMovieList() {
         viewModelScope.launch {
             movieRepository.getPopularMovieList(context).collect {
-                _uiState.value = it
+                _popularMovieState.value = it
+            }
+        }
+    }
+
+    fun getUpComingMovieList() {
+        viewModelScope.launch {
+            movieRepository.getUpComingMovieList(context).collect {
+                _upcomingMovieState.value = it
             }
         }
     }
